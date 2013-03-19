@@ -48,7 +48,5 @@ module LabelGen
     attr_reader :origin_x, :origin_y, :n_x, :n_y, :delta_x, :delta_y, :frame_width, :frame_height
     attr_reader :pdf, :title
 
-    
-
   end
 end
