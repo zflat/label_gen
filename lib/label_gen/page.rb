@@ -36,9 +36,11 @@ module LabelGen
         i_y = 0.5*h
         i_x = 0.5*w
         # @pdf.text "TEST TEXT mid_h=#{i_y}, mid_w=#{i_x}"
-        @pdf.move_down 10
-        @pdf.font_size 64
+        @pdf.move_down 20
+        @pdf.font_size 42
         @pdf.text "12345"
+        @pdf.fill_color "FF00FF"
+        @pdf.fill_rectangle([125, 60], 50, 50)
       end
       # @pdf.start_new_page(:template => template_path, :template_page => 0)
     end
