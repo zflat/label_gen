@@ -11,7 +11,7 @@ module LabelGen
       path = options[:path]
       puts "Generating #{n_pages} pages of labels in #{path}" 
       
-      N30of659x245.new.render_file(path)
+      # N30of659x245.new.render_file(path)
     end
     
   end
