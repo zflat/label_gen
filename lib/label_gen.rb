@@ -1,7 +1,10 @@
+require 'prawn'
+
 require "label_gen/version"
 require "label_gen/frame_iter"
 require "label_gen/page"
 require "label_gen/qr_render"
+require "label_gen/cell"
 
 module LabelGen
   

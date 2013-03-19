@@ -7,7 +7,7 @@ module LabelGen
       let(:fname){'page_spec_0.pdf'}
       let(:fpath){File.join(SPEC_TMP_PATH, fname)}
       subject(:page){Page.new({})}
-      
+
       it "is not nil" do
         expect(page).to_not be_nil
       end
@@ -38,7 +38,7 @@ module LabelGen
 
       it "ouputs a pdf" do
         expect(page.pdf.render_file(fpath)).to be_true
-        t = Launchy.open(fpath)
+        # t = Launchy.open(fpath)
       end
     end
   end
