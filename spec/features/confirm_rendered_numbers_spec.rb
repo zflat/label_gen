@@ -44,7 +44,7 @@ module LabelGen
             expect(NumberRecord.max_number_confirmed).to eq vals_more.number
           end
         end # describe "confirming the additional numbers"
-      end #context "more nebers are rendered"
-    end #  context "after they have been rendered to a page"
+      end # context "more nebers are rendered"
+    end # context "after they have been rendered to a page"
   end # describe "confirming numbers" do
 end

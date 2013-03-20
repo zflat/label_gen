@@ -1,5 +1,4 @@
 require 'thor'
-require 'label_gen/template'
 
 module LabelGen
   class Utils < Thor
@@ -10,11 +9,9 @@ module LabelGen
     def gen_pages(n_pages)
       path = options[:path]
       puts "Generating #{n_pages} pages of labels in #{path}" 
-      
-      # N30of659x245.new.render_file(path)
     end
     
   end
   
-  Utils.start
+  # Utils.start
 end
