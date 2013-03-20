@@ -1,0 +1,2 @@
+# Default configuration
+LabelGen.configure {} 

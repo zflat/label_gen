@@ -1,5 +1,6 @@
 require 'prawn'
 require 'i18n'
+require 'data_mapper'
 
 require "label_gen/version"
 require "label_gen/frame_iter"
@@ -14,5 +15,7 @@ require "label_gen/template"
 module LabelGen
   
   TEMPLATE_DIR = File.join(File.dirname(__FILE__), 'label_gen/template')
+
+  DataMapper.finalize
 
 end
