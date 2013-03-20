@@ -19,6 +19,17 @@ module LabelGen
       it "has a grid" do
         expect(page.pdf.grid).to_not be_nil
       end
+
+      it "has 30 cells" do
+        expect(page.cells.count).to eq 30
+      end
+      
+      it "has valid cells" do
+        page.cells.each do |c|
+          expect(c).to_not be_nil
+        end
+      end
+      
     end
     context "with 30 grid cells" do
       let(:fname){'page_spec_1.pdf'}

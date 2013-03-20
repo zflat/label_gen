@@ -27,7 +27,7 @@ module LabelGen
         LabelGen.configuration = nil
         LabelGen.configure {}
       end
-      
+
       it "has a locale" do
         expect(config.locale).to_not be_nil
       end

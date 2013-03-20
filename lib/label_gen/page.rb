@@ -29,6 +29,37 @@ module LabelGen
     attr_reader :origin_x, :origin_y, :n_x, :n_y, :delta_x, :delta_y, :frame_width, :frame_height
     attr_reader :pdf, :title
 
+    def cells
+      @cells ||= []
+      if  @cells.empty?
+        (0..n_y-1).each do |j|
+          (0..n_x-1).each do |i|
+            @cells << pdf.grid(j,i)
+          end
+        end
+      end
+      @cells
+    end
+
+    def fill_labels(labels)
+      count = 0
+      max_count = labels.length
+      while count<max_count
+        cells.each do |c|
+          l = labels[count]
+          c.bounding_box do
+            LabelGen.configuration.cell.new(pdf, l).fill
+          end
+          count +=1
+          if count >= max_count
+            return count
+          end
+        end # cells.each
+        pdf.start_new_page
+      end # while count<max_count
+      count
+    end
+
     private
 
     def format_page

@@ -4,11 +4,12 @@ module LabelGen
   # See http://robots.thoughtbot.com/post/344833329/mygem-configure-block
   class Configuration
 
-    attr_accessor :template_name
+    attr_accessor :template_name, :initial_number
     attr_reader :locale, :locale_path
     
     def initialize
       @template_name = "Ol875"
+      @initial_number = 1340
       self.locale_path = File.dirname(__FILE__) + '/../../locales'
       self.locale = "en"
     end

@@ -17,18 +17,16 @@ module LabelGen
         Page.new({
                    :n_x => 3,
                    :n_y => 10,
+                   :title => fname,
                    :delta_x => 12
                  })
       end
 
       before :each do
-        pdf.grid.show_all
-        page.pdf.grid(0,0).bounding_box do
-          label = "12345"
-          url = "http://qr.domainsample.com/items/abc-#{label}"
-          qr = RQRCode::QRCode.new(url, :size => 5, :level => :h)
-          LabelGen.configuration.cell.new(page.pdf, "12345", qr).fill
-        end
+        vals = (LabelGen.configuration.initial_number..
+                LabelGen.configuration.initial_number+5).to_a
+        labels = vals.map{|v| Template::label(v)}
+        page.fill_labels(labels)
       end
       
       it "ouputs a pdf" do

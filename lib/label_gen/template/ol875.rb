@@ -20,14 +20,18 @@ module LabelGen
       
 
       class Cell
-        def initialize(pdf, label, qr)
+        def initialize(pdf, label)
           @pdf = pdf
-          @qr = qr
           @label = label
         end
         
-        attr_reader :pdf, :qr, :label
+        attr_reader :pdf, :label
         
+        def qr
+          @qr ||= RQRCode::QRCode.new(QrRender.build_url(label),
+                                   :size => 5, :level => :h)
+        end
+
         def fill
           pdf.move_down 18
           pdf.font_size 42
