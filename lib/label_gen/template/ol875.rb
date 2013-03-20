@@ -18,6 +18,9 @@ module LabelGen
 
       attr_reader :options, :template_path
       
+      def labels_per_page
+        30
+      end
 
       class Cell
         def initialize(pdf, label)

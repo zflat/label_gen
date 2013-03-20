@@ -2,7 +2,7 @@ module LabelGen
   class NumberGenerator
 
     def initialize(n_numbers)
-      @count = n_numbers
+      @count = n_numbers.floor
       @n_initial = NumberRecord.max_number_used
       @number_max = @n_initial + @count
       @number = @n_initial

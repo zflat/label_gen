@@ -4,26 +4,14 @@ module LabelGen
 
   describe "rendering page" do
     context "with qr code" do
-      let(:page){Page.new}
-      let(:pdf){page.pdf}
-      let(:sample_url){ 'http://qr.sampledomain.com/item/abc-12345/' }
-      let(:qr){RQRCode::QRCode.new(sample_url, :size => 5, :level => :h)}
-      let(:qr_print){QrRender.new(qr, :length => 62)}
-
       let(:fname){'page_render_spec_0.pdf'}
       let(:fpath){File.join(SPEC_TMP_PATH, fname)}
-      
-      subject(:page)do
-        Page.new({
-                   :n_x => 3,
-                   :n_y => 10,
-                   :title => fname,
-                   :delta_x => 12
-                 })
-      end
+      let(:page){Page.new(:title => fname)}
+      let(:n_pages){1.0/2}
 
       before :each do
-        vals = NumberGenerator.new(6)
+        n_vals = n_pages * LabelGen.configuration.template.labels_per_page
+        vals = NumberGenerator.new(n_vals)
         page.fill_labels(vals)
       end
       
