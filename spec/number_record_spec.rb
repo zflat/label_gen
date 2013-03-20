@@ -115,7 +115,7 @@ module LabelGen
         NumberRecord.confirm_used(number)
       end
 
-      it "is returns nil" do
+      it "returns nil" do
         expect(NumberRecord.put_used(number)).to be_nil
       end
     end # describe "using a previously confirmed number"
@@ -131,6 +131,40 @@ module LabelGen
         expect(NumberRecord.confirm_used(number)).to_not be_true
       end
     end # describe "confirming an unused number"
+
+
+    describe "confirming numbers" do
+      context "that have been used" do
+        context "when some numbers are already confirmed" do
+          
+          let(:pre_confirmed_max){NumberRecord.max_number_confirmed + 10}
+          let(:max_to_confirm){NumberRecord.max_number_confirmed + 55}
+          
+          before :each do
+            DataMapper.auto_migrate!
+            (NumberRecord.max_number_confirmed..pre_confirmed_max).each do |n|
+              NumberRecord.put_used(n)
+              NumberRecord.confirm_used(n)
+            end
+            (NumberRecord.max_number_confirmed..max_to_confirm).each do |n|
+              NumberRecord.put_used(n)            
+            end
+          end
+          
+          it "indicates the pre_confirmed max as the max_number_confirmed" do
+            expect(NumberRecord.max_number_confirmed).to eq pre_confirmed_max
+          end
+        
+          it "confirms each number in the series" do
+            (NumberRecord.max_number_confirmed..max_to_confirm).each do |n|
+            expect(NumberRecord.confirm_used(n)).to be_true
+            end
+          end
+          
+        end #  context "when some numbers are already confirmed" 
+      end # context "that have been used"
+    end # describe "confirming printed numbers" 
+
     
   end # describe NumberRecord
 end # module LabelGen
