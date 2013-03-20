@@ -23,10 +23,8 @@ module LabelGen
       end
 
       before :each do
-        vals = (LabelGen.configuration.initial_number..
-                LabelGen.configuration.initial_number+5).to_a
-        labels = vals.map{|v| Template::label(v)}
-        page.fill_labels(labels)
+        vals = NumberGenerator.new(6)
+        page.fill_labels(vals)
       end
       
       it "ouputs a pdf" do

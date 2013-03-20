@@ -28,7 +28,9 @@ module LabelGen
 
     attr_reader :origin_x, :origin_y, :n_x, :n_y, :delta_x, :delta_y, :frame_width, :frame_height
     attr_reader :pdf, :title
-
+    
+    # Array of grid cells for the current
+    # page of the pdf
     def cells
       @cells ||= []
       if  @cells.empty?
@@ -41,23 +43,34 @@ module LabelGen
       @cells
     end
 
-    def fill_labels(labels)
-      count = 0
-      max_count = labels.length
-      while count<max_count
+    # Pull values and add the corresponding label
+    # to the next available grid, adding pages
+    # to the pdf as necessary
+    # 
+    # @param NumberGenerator(#has_next?,#pull) values
+    # 
+    def fill_labels(values)
+      while values.has_next?
         cells.each do |c|
-          l = labels[count]
+          # String formatted label based on the given value
+          label = Template::label(values.pull)
+
           c.bounding_box do
-            LabelGen.configuration.cell.new(pdf, l).fill
+            LabelGen.configuration.cell.new(pdf, label).fill
           end
-          count +=1
-          if count >= max_count
-            return count
+          
+          unless values.has_next?
+            # exit early because the page is not filled
+            # even thouth all numbers are pulled
+            return values.number
           end
         end # cells.each
+        
+        # not all numbers are pulled,
+        # so start the next page
         pdf.start_new_page
       end # while count<max_count
-      count
+      values.number
     end
 
     private

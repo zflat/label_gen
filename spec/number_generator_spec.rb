@@ -3,7 +3,8 @@ require "spec_helper"
 module LabelGen
   describe NumberGenerator do
     context "with random amount, greater than 9, of numbers" do
-      subject(:gen){NumberGenerator.new(rand(90)+10)}
+      let(:count){rand(90)+10}
+      subject(:gen){NumberGenerator.new(count)}
       
       it "has next" do
         expect(gen).to have_next
@@ -15,6 +16,10 @@ module LabelGen
 
       it "has a count > 9" do
         expect(gen.count).to be_> 9
+      end
+
+      it "has the correct count" do
+        expect(gen.count).to eq count        
       end
 
       it "has monotonically increasing values" do

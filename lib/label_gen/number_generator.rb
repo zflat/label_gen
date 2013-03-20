@@ -3,16 +3,16 @@ module LabelGen
 
     def initialize(n_numbers)
       @count = n_numbers
-      @n_initial = LabelGen.configuration.initial_number
+      @n_initial = NumberRecord.max_number_used
+      @number_max = @n_initial + @count
       @number = @n_initial
-      @number_max = @number + @count
     end
 
     attr_reader :number, :count
-
+    
     def pull
       if has_next?
-        @number += 1
+        NumberRecord.put_used(@number += 1)
       end
     end
 
