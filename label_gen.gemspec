@@ -28,5 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'prawn', '~>0.12'
   spec.add_dependency 'rqrcode', '~>0.4.2'
   spec.add_dependency 'thor', '~>0.17'
+  spec.add_dependency 'i18n', '>=0'
   
 end

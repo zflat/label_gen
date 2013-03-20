@@ -1,4 +1,4 @@
-require "label_gen/template/n30of659x245"
+require "label_gen/template/ol875"
 
 module LabelGen
   module Template

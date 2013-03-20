@@ -1,9 +1,12 @@
-require 'prawn'
 require 'rqrcode'
 
 module LabelGen
 
   class QrRender
+    
+    def self.build_url(number)
+      I18n.translate('label_gen.qr_url', :number => number)
+    end
     
     def initialize(code, optns = {})
       @qr = code
