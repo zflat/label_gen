@@ -5,8 +5,8 @@ module LabelGen
     context "without modifications" do
       subject(:config){LabelGen.configuration}
       
-      it "has a default template" do
-        expect(config.default_template).to_not be_nil
+      it "has a template" do
+        expect(config.template).to_not be_nil
       end
     end # context "without modifications"
 
@@ -16,17 +16,32 @@ module LabelGen
       let(:template_name){"Template01"}
       
       before :each do
+        @locale_path0 = config.locale_path
         LabelGen.configure do |conf|
-          conf.default_template_name = template_name
+          conf.locale_path = File.dirname(__FILE__)
+          conf.template_name = template_name
         end
+      end
+
+      after :each do
+        LabelGen.configuration = nil
+        LabelGen.configure {}
       end
       
       it "has a locale" do
         expect(config.locale).to_not be_nil
       end
 
+      it "changes the locale path" do
+        expect(config.locale_path).to_not eq @locale_path0
+      end
+
+      it "specifies a locale path" do
+        expect(config.locale_path).to_not be_nil
+      end
+
       it "has a template name" do
-        expect(config.default_template_name).to eq template_name
+        expect(config.template_name).to eq template_name
       end
     end
   end

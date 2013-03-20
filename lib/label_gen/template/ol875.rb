@@ -17,6 +17,31 @@ module LabelGen
       end
 
       attr_reader :options, :template_path
-    end
+      
+
+      class Cell
+        def initialize(pdf, label, qr)
+          @pdf = pdf
+          @qr = qr
+          @label = label
+        end
+        
+        attr_reader :pdf, :qr, :label
+        
+        def fill
+          pdf.move_down 18
+          pdf.font_size 42
+          pdf.font "Helvetica", :style => :bold
+          pdf.fill_color "000000"
+          pdf.text label, :character_spacing => -0.5, :indent_paragraphs => 2
+          
+          pdf.translate(120, -5) do
+            QrRender.new(qr, :length => 62, 
+                         :light_color => "FFFFFF", 
+                         :dark_color => "000000").fill(pdf)
+          end
+        end # def fill
+      end # class Cell
+    end # class Ol875
   end # module Tempate
-end
+end # module LabelGen

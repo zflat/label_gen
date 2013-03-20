@@ -4,19 +4,20 @@ module LabelGen
   # See http://robots.thoughtbot.com/post/344833329/mygem-configure-block
   class Configuration
 
-    attr_accessor :default_template_name
+    attr_accessor :template_name
     attr_reader :locale, :locale_path
     
     def initialize
-      @default_template_name = "Ol875"
+      @template_name = "Ol875"
       self.locale_path = File.dirname(__FILE__) + '/../../locales'
       self.locale = "en"
     end
 
     # Setter method for the locale path
     # that updates the I18n load path
-    def locale_path=(str)
-      @locale_path = str
+    def locale_path=(path)
+      remove_locale_load_path(@locale_path)
+      @locale_path = Dir[File.join(File.expand_path(path), '*.yml')]
       add_locale_load_path(@locale_path)
     end
 
@@ -27,8 +28,12 @@ module LabelGen
       set_locale_lang(@locale)
     end
 
-    def default_template
-      @def_template ||= LabelGen::Template.const_get(default_template_name).new
+    def template
+      @template ||= LabelGen::Template.const_get(template_name).new
+    end
+
+    def cell
+      LabelGen::Template.const_get(template_name)::Cell
     end
 
     private
@@ -37,10 +42,14 @@ module LabelGen
       I18n.locale = lang
     end
 
+    def remove_locale_load_path(path)
+      return true if path.nil?
+      I18n.load_path.delete(path)
+    end
+
     def add_locale_load_path(path)
-      I18n.load_path << Dir[File.join(File.expand_path(path), '*.yml')]
-      I18n.load_path.flatten!
-      puts I18n.load_path
+      I18n.load_path << path
+      I18n.load_path.flatten!.uniq!
     end
   end
   

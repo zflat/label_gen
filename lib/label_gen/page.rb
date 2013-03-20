@@ -1,7 +1,7 @@
 module LabelGen
   class Page
     def initialize(params={})
-      @def_optns = LabelGen.configuration.default_template.options
+      @def_optns = LabelGen.configuration.template.options
       @n_x = params[:n_x] || @def_optns[:n_x]
       @n_y = params[:n_y] || @def_optns[:n_y]
       @origin_x = params[:origin_x] || @def_optns[:origin_x]

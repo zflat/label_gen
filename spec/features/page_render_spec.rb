@@ -27,7 +27,7 @@ module LabelGen
           label = "12345"
           url = "http://qr.domainsample.com/items/abc-#{label}"
           qr = RQRCode::QRCode.new(url, :size => 5, :level => :h)
-          Cell.new(page.pdf, "12345", qr).fill
+          LabelGen.configuration.cell.new(page.pdf, "12345", qr).fill
         end
       end
       
