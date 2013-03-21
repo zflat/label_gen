@@ -3,7 +3,7 @@ module LabelGen
 
     def initialize(n_numbers)
       @count = n_numbers.floor
-      @n_initial = NumberRecord.max_number_used
+      @n_initial = NumberRecord.max_number_confirmed
       @number = @n_initial
     end
 

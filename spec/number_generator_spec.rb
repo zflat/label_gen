@@ -44,8 +44,25 @@ module LabelGen
         it "returns nil on pull" do
           expect(gen.pull).to be_nil
         end
-      end
+      end # context "after #count pulls"
 
-    end
-  end
+      context "when some numbers are used but not confirmed" do
+        let(:count_sub){rand(90)+10}
+        subject(:gen_sub){NumberGenerator.new(count_sub)}
+        
+        before :each do
+          (0..gen.count).each do 
+            gen.pull
+          end
+        end
+
+        it "starts with the first number as the max confirmed, not max used" do
+          expect(NumberRecord.max_number_used).to_not eq NumberRecord.max_number_confirmed
+          expect(gen_sub.number).to_not eq NumberRecord.max_number_used
+          expect(gen_sub.number).to eq NumberRecord.max_number_confirmed
+        end
+      end # context "when some numbers are used but not confirmed"
+
+    end # context "with random amount, greater than 9, of numbers" 
+  end # describe NumberGenerator
 end
