@@ -8,6 +8,7 @@ module LabelGen
     :type => :string, :default => nil, 
     :desc => "Path where the generated PDF will be saved"
     def gen_pages(n_pages)
+      n_pages = n_pages.to_f
       path = options[:path] || LabelGen.configuration.output_path
       render_pdf(total_label_count(n_pages), n_pages, path)
     end
@@ -20,6 +21,7 @@ module LabelGen
     :type => :boolean, :default =>  false, 
     :desc => "Force the labels to be generated, even if it requires overriding the default behaviour to only render labels if they fill an exact number of pages"
     def gen_labels(n_labels)
+      n_labels = n_labels.to_f
       path = options[:path] || LabelGen.configuration.output_path
       
       if fill_exact_pages?(n_labels) || options[:force]
@@ -33,6 +35,7 @@ module LabelGen
 
     desc "confirm_printed MAX_NUMBER", "Update the highest number printed with MAX_NUMBER"
     def confirm_printed(max_number)
+      max_number = max_number.to_i
       if NumberRecord.confirm_used(max_number)
         puts "The max number printed has been recorded as #{max_number}. Numbers less than #{max_number} will no longer be generated."
       else
