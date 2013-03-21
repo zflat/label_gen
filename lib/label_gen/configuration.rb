@@ -9,17 +9,16 @@ module LabelGen
     
     def initialize
       @template_name = "Ol875"
-      @max_number_used = 1339
-      self.locale_path = File.dirname(__FILE__) + '/../../locales'
+      @max_number_used = 0
       self.locale = "en"
     end
 
-    # Setter method for the locale path
-    # that updates the I18n load path
-    def locale_path=(path)
-      remove_locale_load_path(@locale_path)
-      @locale_path = Dir[File.join(File.expand_path(path), '*.yml')]
-      add_locale_load_path(@locale_path)
+    def qr_url=(format_str)
+      I18n.backend.store_translations locale, :label_gen => {:qr_url => format_str}
+    end
+
+    def number_label=(format_str)
+      I18n.backend.store_translations locale, :label_gen =>{:number_label => format_str}
     end
 
     # Setter method that updates the 

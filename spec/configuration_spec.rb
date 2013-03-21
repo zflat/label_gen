@@ -18,7 +18,6 @@ module LabelGen
       before :each do
         @locale_path0 = config.locale_path
         LabelGen.configure do |conf|
-          conf.locale_path = File.dirname(__FILE__)
           conf.template_name = template_name
         end
       end
@@ -30,14 +29,6 @@ module LabelGen
 
       it "has a locale" do
         expect(config.locale).to_not be_nil
-      end
-
-      it "changes the locale path" do
-        expect(config.locale_path).to_not eq @locale_path0
-      end
-
-      it "specifies a locale path" do
-        expect(config.locale_path).to_not be_nil
       end
 
       it "has a template name" do
