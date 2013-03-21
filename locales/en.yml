@@ -1,4 +1,0 @@
-en:
-  label_gen:
-    qr_url: http://qr.somedomain.com/items/abc-%{number}/
-    number_label: "%<number>.05d"
