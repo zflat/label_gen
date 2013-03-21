@@ -9,8 +9,8 @@ require "label_gen/number_generator"
 require "label_gen/number_record"
 require "label_gen/qr_render"
 require "label_gen/configuration"
-
 require "label_gen/template"
+require "label_gen/utils"
 
 module LabelGen
   
