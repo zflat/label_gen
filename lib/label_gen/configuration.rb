@@ -4,12 +4,13 @@ module LabelGen
   # See http://robots.thoughtbot.com/post/344833329/mygem-configure-block
   class Configuration
 
-    attr_accessor :template_name, :max_number_used
+    attr_accessor :template_name, :max_number_used, :output_path
     attr_reader :locale, :locale_path
     
     def initialize
       @template_name = "Ol875"
       @max_number_used = 0
+      @output_path = './output.pdf'
       self.locale = "en"
     end
 

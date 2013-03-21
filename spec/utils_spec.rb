@@ -18,20 +18,5 @@ module LabelGen
       end
     end
     
-    describe "current_max_number" do
-      let(:max_number){101}
-      let(:output){ capture(:stdout){Utils.start ["current_max_number"]}}      
-
-      before :each do
-        LabelGen.configure do |config|
-          config.max_number_used = max_number
-        end
-      end
-
-      it "provides the correct number" do
-        expect(output.strip).to eq max_number.to_s
-      end
-    end
-    
   end # describe Utils
 end
