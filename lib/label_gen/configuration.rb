@@ -5,10 +5,11 @@ module LabelGen
   class Configuration
 
     attr_accessor :template_name, :max_number_used, :output_path
-    attr_reader :locale, :locale_path
+    attr_reader :locale, :locale_path, :use_pdf_template
     
     def initialize
       @template_name = "Ol875"
+      @use_pdf_template = false # option to copy pdf data from a template to new pages
       @max_number_used = 0
       @output_path = './output.pdf'
       self.locale = "en"

@@ -52,7 +52,6 @@ module LabelGen
 
       it "ouputs a pdf" do
         expect(page.pdf.render_file(fpath)).to be_true
-        # t = Launchy.open(fpath)
       end
     end
   end

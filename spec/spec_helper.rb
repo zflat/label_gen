@@ -14,7 +14,9 @@ RSpec.configure do |config|
     # remove existing temp files from previous runs
     `rm -r #{File.join(SPEC_TMP_PATH, '*.pdf')} > /dev/null`
   end
-  
+
+  # Exclusion filtering
+  config.filter_run_excluding :launch => true
 
   # Testing CLI
   # See 

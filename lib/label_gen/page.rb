@@ -15,11 +15,14 @@ module LabelGen
       @margin = params[:margin] || @def_optns[:margin]
       @template_path = params[:template_path] || @def_optns[:template_path]
       @template_page = params[:template_page] || @def_optns[:template_page]
+      @use_template = params[:template_path] || LabelGen.configuration.use_pdf_template
       @title = params[:title] || 'PDF Page'
 
       @pdf = Prawn::Document.new(:page_size => @page_size, 
-                                 #:page_layout => @page_layout,
+                                 :page_layout => @page_layout,
                                  :margin => @margin,
+                                 :template => (@template_path if @use_template),
+                                 :template_page => (@template_page if @use_template),
                                  :info => {
                                    :Title =>@title
                                  })
