@@ -1,4 +1,5 @@
 require "label_gen/template/ol875"
+require "label_gen/template/ol875plain"
 
 module LabelGen
   module Template

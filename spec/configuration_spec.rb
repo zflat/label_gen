@@ -13,7 +13,7 @@ module LabelGen
     context "with options set" do
       subject(:config){LabelGen.configuration}
       let(:base_url){"http://qr.domainsample.com/items/abc-"}
-      let(:template_name){"Template01"}
+      let(:template_name){"Template"}
       
       before :each do
         @locale_path0 = config.locale_path
