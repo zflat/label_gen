@@ -6,7 +6,7 @@ module LabelGen
     desc "gen_pages N", "Generates the next N pages of labels as a PDF"
     method_option :path, 
     :type => :string, :default => nil, 
-    :desc => "Path where the generated PDF will be saved"
+    :desc => "Full file path including file name where the generated PDF will be saved"
     def gen_pages(n_pages)
       n_pages = n_pages.to_f
       path = options[:path] || LabelGen.configuration.output_path
@@ -16,7 +16,7 @@ module LabelGen
     desc "gen_labels N", "Generates the next N labels rendered to PDF"
     method_option :path, 
     :type => :string, :default =>  nil, 
-    :desc => "Path where the generated PDF will be saved"
+    :desc => "Full file path including file name where the generated PDF will be saved"
     method_option :force, 
     :type => :boolean, :default =>  false, 
     :desc => "Force the labels to be generated, even if it requires overriding the default behaviour to only render labels if they fill an exact number of pages"
