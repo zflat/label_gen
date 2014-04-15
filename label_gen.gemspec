@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'sqlite3', '~> 1.3.3'
   spec.add_development_dependency 'dm-sqlite-adapter', '~> 1.2.0'
   
-  spec.add_dependency 'prawn', '~>0.12'
+  spec.add_dependency 'prawn', '~>0.12.0'
   spec.add_dependency 'rqrcode', '~>0.4.2'
   spec.add_dependency 'thor', '~>0.17'
   spec.add_dependency 'i18n', '>=0'
