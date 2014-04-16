@@ -3,23 +3,23 @@ require 'thor'
 module LabelGen
   class Utils < Thor
     
-    desc "gen_pages N", "Generates the next N pages of labels as a PDF"
+    desc I18n.translate('cmd.gen_pages.name'), I18n.translate('cmd.gen_pages.desc')
     method_option :path, 
     :type => :string, :default => nil, 
-    :desc => "Full file path including file name where the generated PDF will be saved"
+    :desc => I18n.translate('cmd.gen_pages.optn_path_desc')
     def gen_pages(n_pages)
       n_pages = n_pages.to_f
       path = options[:path] || LabelGen.configuration.output_path
       render_pdf(total_label_count(n_pages), n_pages, path)
     end
 
-    desc "gen_labels N", "Generates the next N labels rendered to PDF"
+    desc I18n.translate('cmd.gen_labels.name'), I18n.translate('cmd.gen_pages.desc')
     method_option :path, 
     :type => :string, :default =>  nil, 
     :desc => "Full file path including file name where the generated PDF will be saved"
     method_option :force, 
     :type => :boolean, :default =>  false, 
-    :desc => "Force the labels to be generated, even if it requires overriding the default behaviour to only render labels if they fill an exact number of pages"
+    :desc => I18n.translate('cmd.gen_pages.optn_labels_desc')
     def gen_labels(n_labels)
       n_labels = n_labels.to_f
       path = options[:path] || LabelGen.configuration.output_path
@@ -33,7 +33,7 @@ module LabelGen
       end
     end
 
-    desc "confirm_printed MAX_NUMBER", "Update the highest number printed with MAX_NUMBER"
+    desc I18n.translate('cmd.confirm_printed.name'), I18n.translate('cmd.confirm_printed.desc')
     def confirm_printed(max_number)
       max_number = max_number.to_i
       if NumberRecord.confirm_used(max_number)
@@ -43,7 +43,7 @@ module LabelGen
       end
     end
 
-    desc "current_max_number", "Get the value of the max number that has been confirmed as printed"
+    desc I18n.translate('cmd.current_max_number.name'), I18n.translate('cmd.current_max_number.desc')
     def current_max_number
       puts NumberRecord.max_number_confirmed
     end

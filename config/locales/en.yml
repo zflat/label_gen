@@ -3,4 +3,17 @@
 
 en:
   cmd:
-    gen_pages: gen_pages_N
+    gen_pages:
+      name: gen_pages N
+      desc: Generates the next N pages of labels as a PDF
+      optn_path_desc: Full file path including file name where the generated PDF will be saved
+    gen_labels:
+      name: gen_labels N
+      desc: Generates the next N labels rendered to PDF
+      optn_force_desc: Force the labels to be generated, even if it requires overriding the default behaviour to only render labels if they fill an exact number of pages
+    confirm_printed:
+      name: confirm_printed MAX_NUMBER
+      desc: Update the highest number printed with MAX_NUMBER
+    current_max_number:
+      name: current_max_number
+      desc: Get the value of the max number that has been confirmed as printed
