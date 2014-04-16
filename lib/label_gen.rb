@@ -1,9 +1,12 @@
 require 'prawn'
 require 'i18n'
+I18n.load_path ||= []
+I18n.load_path << [  File.join(File.dirname(__FILE__), "..", "config", "locales", "en.yml") ]
+
 require 'data_mapper'
 
-require "label_gen/version"
 require "label_gen/configuration"
+require "label_gen/version"
 require "label_gen/frame_iter"
 require "label_gen/page"
 require "label_gen/number_generator"
