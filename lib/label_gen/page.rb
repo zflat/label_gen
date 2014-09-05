@@ -61,7 +61,11 @@ module LabelGen
           c.bounding_box do
             LabelGen.configuration.cell.new(pdf, label).fill
           end
-          
+
+          if block_given?
+            yield(c)
+          end
+
           unless values.has_next?
             # exit early because the page is not filled
             # even thouth all numbers are pulled

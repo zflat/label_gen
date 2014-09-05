@@ -1,4 +1,5 @@
 require 'thor'
+require 'ruby-progressbar'
 
 module LabelGen
   class Utils < Thor
@@ -76,7 +77,10 @@ module LabelGen
     def render_pdf(n_labels, pages_total, path)
       doc = Page.new(:title => "#{n_labels} Labels Output")
       vals = NumberGenerator.new(n_labels)
-      max_number = doc.fill_labels(vals)
+      progress = ProgressBar.create(:title=>'Progess', 
+                                    :format => 'Generating Label %c of %C [%B][%a]',
+                                    :starting_at => 0, :total => n_labels)
+      max_number = doc.fill_labels(vals) { progress.increment }
 
       if max_number
         puts "Generated #{n_labels} labels on #{pages_total} pages, ending in number #{max_number}"

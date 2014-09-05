@@ -31,5 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor', '~>0.17'
   spec.add_dependency 'i18n', '>=0'
   spec.add_dependency 'data_mapper', '~>1.2.0'
-  
+  spec.add_dependency 'ruby-progressbar', '~>1.4.2'
 end
