@@ -1,5 +1,8 @@
 require 'prawn'
 require 'i18n'
+
+I18n.enforce_available_locales = true
+
 I18n.load_path ||= []
 I18n.load_path << [  File.join(File.dirname(__FILE__), "..", "config", "locales", "en.yml") ]
 
