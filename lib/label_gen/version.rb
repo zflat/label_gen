@@ -1,3 +1,3 @@
 module LabelGen
-  VERSION = "0.0.2" unless defined?(LabelGen::VERSION)
+  VERSION = "0.0.3" unless defined?(LabelGen::VERSION)
 end
