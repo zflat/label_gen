@@ -10,6 +10,7 @@ en:
     gen_labels:
       name: gen_labels N
       desc: Generates the next N labels rendered to PDF
+      optn_path_desc: Full file path including file name where the generated PDF will be saved
       optn_force_desc: Force the labels to be generated, even if it requires overriding the default behaviour to only render labels if they fill an exact number of pages
     confirm_printed:
       name: confirm_printed MAX_NUMBER

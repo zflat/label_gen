@@ -17,10 +17,10 @@ module LabelGen
     desc I18n.translate('cmd.gen_labels.name'), I18n.translate('cmd.gen_pages.desc')
     method_option :path, 
     :type => :string, :default =>  nil, 
-    :desc => "Full file path including file name where the generated PDF will be saved"
+    :desc => I18n.translate('cmd.gen_labels.optn_path_desc')
     method_option :force, 
     :type => :boolean, :default =>  false, 
-    :desc => I18n.translate('cmd.gen_pages.optn_labels_desc')
+    :desc => I18n.translate('cmd.gen_labels.optn_force_desc')
     def gen_labels(n_labels)
       n_labels = n_labels.to_f
       path = options[:path] || LabelGen.configuration.output_path
